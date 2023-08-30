@@ -20,6 +20,8 @@ argocd admin initial-password -n argocd
 For port fowarding, Use the command below
 ---
 kubectl port-forward svc/argocd-server -n argocd 8080:443
+use the command below to change argocd-server service to NodePort Service. Note, you can only do this if you have a public Ip attached to the kubernetes node.
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
 ---
 Now you can sign up with admin as the username and the password generated earlier
 The next step is to install Bitnami Kubeseal Client
